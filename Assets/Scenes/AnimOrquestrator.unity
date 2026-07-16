@@ -119,167 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &521474855
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.215
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      propertyPath: m_Name
-      value: HumanBasemesh
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 521474857}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 521474858}
-  m_SourcePrefab: {fileID: 100100000, guid: e650e4c904993bf489326d1c5994c243, type: 3}
---- !u!1 &521474856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e650e4c904993bf489326d1c5994c243, type: 3}
-  m_PrefabInstance: {fileID: 521474855}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &521474857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521474856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a0e94b6dca59c4ba29e5831e97a26d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimatorManager
-  alphabet:
-  - key: A
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_A
-  - key: B
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_B
-  - key: C
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_C
-  - key: D
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_D
-  - key: E
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_E
-  - key: F
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_F
-  - key: G
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_G
-  - key: H
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_H
-  - key: I
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_I
-  - key: J
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_J
-  - key: K
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_K
-  - key: L
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_L
-  - key: LL
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_LL
-  - key: M
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_M
-  - key: N
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_N
-  - key: "\xD1"
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_NN
-  - key: O
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_O
-  - key: P
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_P
-  - key: Q
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Q
-  - key: R
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_R
-  - key: RR
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_RR
-  - key: S
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_S
-  - key: T
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_T
-  - key: U
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_U
-  - key: V
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_V
-  - key: W
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_W
-  - key: X
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_X
-  - key: Y
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Y
-  - key: Z
-    value: Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Z
---- !u!95 &521474858
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521474856}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3d1ce5a380f9c8b40b4ffa3bf6d57ce5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &699158824
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,10 +383,67 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1001 &5668331165401165548
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.215
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222172792696109671, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_Name
+      value: HumanBasemesh
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 699158827}
   - {fileID: 1778253454}
-  - {fileID: 521474855}
+  - {fileID: 5668331165401165548}

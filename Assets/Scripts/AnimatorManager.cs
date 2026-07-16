@@ -40,7 +40,7 @@ public class AnimatorManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        Interpret("comió");
+        Interpret("chupalo matiu");
        
     }
 

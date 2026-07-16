@@ -2,16 +2,11 @@
 ## Instalar unity
 Unity Version 6000.3.11f1, con soporte para dev de android
 ## Instalar Dependencias (Instaladas desde el packet manager de Unity)
-- XR Plugin Management
-- AR Foundation
-- XR Core Utilities
-- XR Interaction Toolkit
-- XR Hands
-### Dependencias a considerar
 - Sentis
-## Workflow
-Usar EscenaIA para implementar el reconocimiento de las señaleticas, imagenes, etc.
-La otra escena será para probar la interfaz y los modelos 3D
-Ya para cuando alguna de las 2 features esten terminada las tratamos de portear a la otra escena.
+- Unity OpenXR META (com.unity.xr.meta-openxr)
+## Escenas
+- EscenaIA es para probar los algoritmos de IA sin nada de VR para ver si funcionan.
+- AnimOrquestrator es donde se encuentra el orquestador con el modelo 3D, para probarlo sin VR
+- MainScene es la escena de VR con Passthrough, proximamente meteremos todo a esa escena.
+- SampleScene era una escena con el algoritmo de VR anterior, ignorenla no mas.
 
-La idea de esto es para no tener merge conflicts por andar usando la misma escena.
