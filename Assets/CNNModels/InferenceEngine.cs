@@ -39,16 +39,16 @@ public class InferenceEngine : MonoBehaviour
         }
     }
 
-    public void ProcesarImagen(Texture camaraTexture)
+    public string ProcesarImagen(Texture camaraTexture)
     {
         if (camaraTexture == null || camaraTexture.width <= 16 || camaraTexture.height <= 16)
         {
-            return; 
+            return ""; 
         }
         if (worker == null)
         {
             InicializarIA();
-            if (worker == null) return;
+            if (worker == null) return "";
         }
 
         Unity.InferenceEngine.TextureTransform transform = new Unity.InferenceEngine.TextureTransform()
@@ -65,11 +65,18 @@ public class InferenceEngine : MonoBehaviour
             if (resultado != null)
             {
                 Debug.Log($"<color=green><b>[Éxito]</b></color> ¡Señal identificada con éxito: {resultado}!");
+                return resultado;
             }
             else
             {
                 Debug.LogWarning("[Info] No se detectó ninguna señal que supere el " + (confidenceThreshold * 100) + "% de confianza.");
+                return "";
             }
+        }
+        else
+        {
+            Debug.LogWarning("PostPreporcesor no asignado");
+            return "";
         }
     }
 

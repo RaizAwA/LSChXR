@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections;
 using Meta.XR;
-
+using TMPro;
 
 public class CameraInfo : MonoBehaviour
 {
@@ -14,7 +15,18 @@ public class CameraInfo : MonoBehaviour
     OVRHand ovrhandL;
     [SerializeField]
     InferenceEngine inferenceEngine;
+    [SerializeField]
+    AnimatorManager animManager;
+    [SerializeField]
+    TextMeshPro tmp;
+
+    [SerializeField]
+    float proccesingInterval = 0.15f;
+
+    [SerializeField]
+    string lastPrediction = "";
     bool isPinching = false;
+    bool runCNN = true;
     
 
     void Start()
@@ -33,6 +45,9 @@ public class CameraInfo : MonoBehaviour
 
         if (cameraAccess.IsPlaying)
         {
+            //StartCoroutine(CNNLoop());
+            
+
             if ((ovrhandL != null && ovrhandR != null) && (ovrhandL.IsTracked || ovrhandR.IsTracked))
             {
                 isPinching = (ovrhandL.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandL.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) || 
@@ -40,19 +55,27 @@ public class CameraInfo : MonoBehaviour
             }
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinching)
             {
-                Debug.Log("Controller pressed!");
+                if (texture != null && !animManager.GetTriggerAnim())
+                {
+                    lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                    tmp.text = lastPrediction; 
+                    animManager.Interpret(lastPrediction);
+                }
+                
             }
 
+        }
+    }
 
-            /*
-            else if (
-                OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RHand) || 
-                OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LHand) 
-                )
+    IEnumerator CNNLoop()
+    {
+        while (runCNN)
+        {
+            if (texture != null)
             {
-                Debug.Log("Hand pinched!");
+                lastPrediction = inferenceEngine.ProcesarImagen(texture);
             }
-            */
+            yield return new WaitForSeconds(proccesingInterval);
         }
     }
 }

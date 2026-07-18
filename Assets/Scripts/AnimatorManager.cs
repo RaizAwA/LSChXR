@@ -40,7 +40,6 @@ public class AnimatorManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        Interpret("chupalo matiu");
        
     }
 
@@ -182,5 +181,10 @@ public class AnimatorManager : MonoBehaviour
         }
         PlayAnim();
         
+    }
+
+    public bool GetTriggerAnim()
+    {
+        return this.triggerAnim;
     }
 }
