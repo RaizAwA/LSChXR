@@ -2,12 +2,16 @@ using UnityEngine;
 using Unity.InferenceEngine;
 
 
+
 public class SignRecognition : MonoBehaviour
 {
     [SerializeField] 
     float threshold = 0.9f;
     public Texture2D test;
     public ModelAsset signRecognition;
+
+    
+
     public float[] results;
     Worker worker;
     
