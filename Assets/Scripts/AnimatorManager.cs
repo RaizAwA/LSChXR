@@ -7,7 +7,9 @@ using System.Collections.Generic;
 
 public class AnimatorManager : MonoBehaviour
 {
-    
+    [SerializeField]
+    CameraInfo camInfo;
+
     [System.Serializable]
     public struct Dict
     {
@@ -46,7 +48,6 @@ public class AnimatorManager : MonoBehaviour
    
     void Update()
     {
-        //TODO: Mejorar la transicion de las poses con animaciones, con crossfade se suelen saltar dichas animaciones  (G, S, Z, RR, LL)
         if (triggerAnim && animFifo.Count != 0)
         {
             if(currentState != AnimStates.IS_ANIMATING)
@@ -58,10 +59,12 @@ public class AnimatorManager : MonoBehaviour
                 currentState = AnimStates.IDLE;
                 wordFifo.RemoveAt(0);
                 animFifo.RemoveAt(0);
+                //Finished interpreting, now we stop the animation loop, return to IDLE pose and self disable ourselves
                 if(animFifo.Count == 0)
                 {
                     triggerAnim = false;
                     anim.CrossFadeInFixedTime("Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Idle",1);
+                    StartCoroutine(SelfDisable());
                 }
             }
         }
@@ -113,7 +116,6 @@ public class AnimatorManager : MonoBehaviour
         Debug.Log("No encontré '"+key+"' en el alfabeto");
         return "";
     }
-    //TODO: Hacer funcionar los casos especiales LL y RR
     public void Interpret(string phrase)
     {
         char[] letters = Sanitize(phrase);
@@ -186,5 +188,11 @@ public class AnimatorManager : MonoBehaviour
     public bool GetTriggerAnim()
     {
         return this.triggerAnim;
+    }
+
+    IEnumerator SelfDisable()
+    {
+        yield return new WaitForSeconds(1.5f); // <- we wait for the crossfade IDLE animation to end.
+        gameObject.SetActive(false);
     }
 }

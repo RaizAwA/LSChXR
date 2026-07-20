@@ -35,7 +35,7 @@ public class InferenceEngine : MonoBehaviour
         if (worker == null && modelAsset != null)
         {
             runtimeModel = Unity.InferenceEngine.ModelLoader.Load(modelAsset);
-            worker = new Unity.InferenceEngine.Worker(runtimeModel, Unity.InferenceEngine.BackendType.GPUCompute);
+            CreateWorker();
         }
     }
 
@@ -78,6 +78,20 @@ public class InferenceEngine : MonoBehaviour
             Debug.LogWarning("PostPreporcesor no asignado");
             return "";
         }
+    }
+
+    public void CreateWorker()
+    {
+        if (worker == null)
+        {
+            worker = new Unity.InferenceEngine.Worker(runtimeModel, Unity.InferenceEngine.BackendType.GPUCompute);
+        }
+    }
+    public void DisposeWorker()
+    {
+
+        worker?.Dispose();
+  
     }
 
     void OnDestroy()

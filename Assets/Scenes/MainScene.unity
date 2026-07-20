@@ -1115,7 +1115,7 @@ MonoBehaviour:
   ovrhandR: {fileID: 1095576158}
   ovrhandL: {fileID: 317831156}
   inferenceEngine: {fileID: 1092927822}
-  animManager: {fileID: 1911035517}
+  avatar3D: {fileID: 1911035517}
   tmp: {fileID: 2095801438}
   proccesingInterval: 0.15
   lastPrediction: 
@@ -2313,7 +2313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.69173
+      value: -0.773
       objectReference: {fileID: 0}
     - target: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2350,6 +2350,10 @@ PrefabInstance:
     - target: {fileID: 3222172792696109671, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
       propertyPath: m_Name
       value: HumanBasemesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222172792696109671, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5233215637837336078, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
       propertyPath: m_CastShadows
@@ -2393,17 +2397,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2881360079140167901, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
   m_PrefabInstance: {fileID: 1911035515}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1911035517 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4306507378047226738, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
+--- !u!1 &1911035517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3222172792696109671, guid: 830f5cfef20175b4b8c7db0d66bdd4cf, type: 3}
   m_PrefabInstance: {fileID: 1911035515}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a0e94b6dca59c4ba29e5831e97a26d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimatorManager
 --- !u!1 &2095801437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,7 +2572,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095801437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.402}
+  m_LocalPosition: {x: 0, y: 0, z: -0.147}
   m_LocalScale: {x: 0.027728, y: 0.027728, z: 0.027728}
   m_ConstrainProportionsScale: 0
   m_Children: []

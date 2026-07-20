@@ -16,6 +16,7 @@ public class CameraInfo : MonoBehaviour
     [SerializeField]
     InferenceEngine inferenceEngine;
     [SerializeField]
+    GameObject avatar3D;
     AnimatorManager animManager;
     [SerializeField]
     TextMeshPro tmp;
@@ -31,6 +32,7 @@ public class CameraInfo : MonoBehaviour
 
     void Start()
     {
+        animManager = avatar3D.GetComponent<AnimatorManager>();
         cameraAccess = GetComponent<PassthroughCameraAccess>();
     }
 
@@ -45,8 +47,6 @@ public class CameraInfo : MonoBehaviour
 
         if (cameraAccess.IsPlaying)
         {
-            //StartCoroutine(CNNLoop());
-            
 
             if ((ovrhandL != null && ovrhandR != null) && (ovrhandL.IsTracked || ovrhandR.IsTracked))
             {
@@ -58,8 +58,18 @@ public class CameraInfo : MonoBehaviour
                 if (texture != null && !animManager.GetTriggerAnim())
                 {
                     lastPrediction = inferenceEngine.ProcesarImagen(texture);
-                    tmp.text = lastPrediction; 
-                    animManager.Interpret(lastPrediction);
+                    if (lastPrediction != "")
+                    {
+                        tmp.text = lastPrediction;
+                        //inferenceEngine.DisposeWorker(); //<- we get rid of the worker to see if that frees some GPU memory
+                        avatar3D.SetActive(true);
+                        animManager.Interpret(lastPrediction);
+                    }
+                    else
+                    {
+                        tmp.text = "Ninguna señal detectada...";
+                    }
+                    
                 }
                 
             }
@@ -67,15 +77,5 @@ public class CameraInfo : MonoBehaviour
         }
     }
 
-    IEnumerator CNNLoop()
-    {
-        while (runCNN)
-        {
-            if (texture != null)
-            {
-                lastPrediction = inferenceEngine.ProcesarImagen(texture);
-            }
-            yield return new WaitForSeconds(proccesingInterval);
-        }
-    }
+    
 }
