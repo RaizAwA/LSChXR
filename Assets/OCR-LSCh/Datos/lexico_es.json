@@ -1,0 +1,658 @@
+{
+ "a": {
+  "lema": "a",
+  "pos": "ADP"
+ },
+ "acceso": {
+  "lema": "acceso",
+  "pos": "NOUN"
+ },
+ "accidente": {
+  "lema": "accidente",
+  "pos": "NOUN"
+ },
+ "agua": {
+  "lema": "agua",
+  "pos": "NOUN"
+ },
+ "ahora": {
+  "lema": "ahora",
+  "pos": "ADV"
+ },
+ "al": {
+  "lema": "al",
+  "pos": "ADP"
+ },
+ "alcohol": {
+  "lema": "alcohol",
+  "pos": "NOUN"
+ },
+ "alto": {
+  "lema": "alto",
+  "pos": "ADJ"
+ },
+ "antebrazo": {
+  "lema": "antebrazo",
+  "pos": "NOUN"
+ },
+ "ascensor": {
+  "lema": "ascensor",
+  "pos": "NOUN"
+ },
+ "ascensores": {
+  "lema": "ascensor",
+  "pos": "NOUN"
+ },
+ "autorizado": {
+  "lema": "autorizado",
+  "pos": "ADJ"
+ },
+ "ayer": {
+  "lema": "ayer",
+  "pos": "ADV"
+ },
+ "bajar": {
+  "lema": "bajar",
+  "pos": "VERB"
+ },
+ "base": {
+  "lema": "base",
+  "pos": "NOUN"
+ },
+ "beber": {
+  "lema": "beber",
+  "pos": "VERB"
+ },
+ "besos": {
+  "lema": "beso",
+  "pos": "NOUN"
+ },
+ "calma": {
+  "lema": "calma",
+  "pos": "NOUN"
+ },
+ "camine": {
+  "lema": "camine",
+  "pos": "PROPN"
+ },
+ "capacidad": {
+  "lema": "capacidad",
+  "pos": "NOUN"
+ },
+ "casa": {
+  "lema": "casa",
+  "pos": "NOUN"
+ },
+ "casco": {
+  "lema": "casco",
+  "pos": "NOUN"
+ },
+ "casino": {
+  "lema": "casino",
+  "pos": "NOUN"
+ },
+ "caso": {
+  "lema": "caso",
+  "pos": "NOUN"
+ },
+ "cerrada": {
+  "lema": "cerrado",
+  "pos": "ADJ"
+ },
+ "cerrado": {
+  "lema": "cerrado",
+  "pos": "ADJ"
+ },
+ "chorro": {
+  "lema": "chorro",
+  "pos": "NOUN"
+ },
+ "comer": {
+  "lema": "comer",
+  "pos": "VERB"
+ },
+ "como": {
+  "lema": "como",
+  "pos": "SCONJ"
+ },
+ "con": {
+  "lema": "con",
+  "pos": "ADP"
+ },
+ "contagio": {
+  "lema": "contagio",
+  "pos": "NOUN"
+ },
+ "contexto": {
+  "lema": "contexto",
+  "pos": "NOUN"
+ },
+ "coronavirus": {
+  "lema": "coronavirus",
+  "pos": "NOUN"
+ },
+ "corra": {
+  "lema": "corrar",
+  "pos": "VERB"
+ },
+ "correr": {
+  "lema": "correr",
+  "pos": "VERB"
+ },
+ "cubriéndose": {
+  "lema": "cubrir él",
+  "pos": "VERB"
+ },
+ "dar": {
+  "lema": "dar",
+  "pos": "VERB"
+ },
+ "de": {
+  "lema": "de",
+  "pos": "ADP"
+ },
+ "debe": {
+  "lema": "deber",
+  "pos": "AUX"
+ },
+ "del": {
+  "lema": "del",
+  "pos": "ADP"
+ },
+ "dentro": {
+  "lema": "dentro",
+  "pos": "ADV"
+ },
+ "desfibrilador": {
+  "lema": "desfibrilador",
+  "pos": "NOUN"
+ },
+ "después": {
+  "lema": "después",
+  "pos": "ADV"
+ },
+ "dirija": {
+  "lema": "dirija",
+  "pos": "VERB"
+ },
+ "diríjase": {
+  "lema": "diríjar",
+  "pos": "VERB"
+ },
+ "distancia": {
+  "lema": "distancia",
+  "pos": "NOUN"
+ },
+ "durante": {
+  "lema": "durante",
+  "pos": "ADP"
+ },
+ "e": {
+  "lema": "e",
+  "pos": "CCONJ"
+ },
+ "edificio": {
+  "lema": "edificio",
+  "pos": "NOUN"
+ },
+ "el": {
+  "lema": "el",
+  "pos": "DET"
+ },
+ "electricidad": {
+  "lema": "electricidad",
+  "pos": "NOUN"
+ },
+ "embarazadas": {
+  "lema": "embarazada",
+  "pos": "NOUN"
+ },
+ "emergencia": {
+  "lema": "emergencia",
+  "pos": "NOUN"
+ },
+ "emergencias": {
+  "lema": "emergencia",
+  "pos": "NOUN"
+ },
+ "empuje": {
+  "lema": "empuje",
+  "pos": "VERB"
+ },
+ "en": {
+  "lema": "en",
+  "pos": "ADP"
+ },
+ "encienda": {
+  "lema": "encienda",
+  "pos": "PROPN"
+ },
+ "encuentro": {
+  "lema": "encuentro",
+  "pos": "NOUN"
+ },
+ "enfermo": {
+  "lema": "enfermo",
+  "pos": "NOUN"
+ },
+ "equipo": {
+  "lema": "equipo",
+  "pos": "NOUN"
+ },
+ "escalera": {
+  "lema": "escalera",
+  "pos": "NOUN"
+ },
+ "escaleras": {
+  "lema": "escalera",
+  "pos": "NOUN"
+ },
+ "esta": {
+  "lema": "este",
+  "pos": "DET"
+ },
+ "estornude": {
+  "lema": "estornude",
+  "pos": "PROPN"
+ },
+ "está": {
+  "lema": "estar",
+  "pos": "AUX"
+ },
+ "evacuación": {
+  "lema": "evacuación",
+  "pos": "NOUN"
+ },
+ "evacuado": {
+  "lema": "evacuar",
+  "pos": "VERB"
+ },
+ "evacuar": {
+  "lema": "evacuar",
+  "pos": "VERB"
+ },
+ "evite": {
+  "lema": "evite",
+  "pos": "PROPN"
+ },
+ "extintor": {
+  "lema": "extintor",
+  "pos": "PROPN"
+ },
+ "facial": {
+  "lema": "facial",
+  "pos": "ADJ"
+ },
+ "fuego": {
+  "lema": "fuego",
+  "pos": "NOUN"
+ },
+ "fumar": {
+  "lema": "fumar",
+  "pos": "VERB"
+ },
+ "funciona": {
+  "lema": "funcionar",
+  "pos": "VERB"
+ },
+ "gel": {
+  "lema": "gel",
+  "pos": "PROPN"
+ },
+ "generales": {
+  "lema": "general",
+  "pos": "ADJ"
+ },
+ "grite": {
+  "lema": "gritar",
+  "pos": "VERB"
+ },
+ "guantes": {
+  "lema": "guant",
+  "pos": "NOUN"
+ },
+ "hoy": {
+  "lema": "hoy",
+  "pos": "ADV"
+ },
+ "incendio": {
+  "lema": "incendio",
+  "pos": "NOUN"
+ },
+ "ingreso": {
+  "lema": "ingreso",
+  "pos": "NOUN"
+ },
+ "inicie": {
+  "lema": "inicie",
+  "pos": "VERB"
+ },
+ "instrucciones": {
+  "lema": "instrucción",
+  "pos": "NOUN"
+ },
+ "jabón": {
+  "lema": "jabón",
+  "pos": "NOUN"
+ },
+ "la": {
+  "lema": "el",
+  "pos": "DET"
+ },
+ "las": {
+  "lema": "el",
+  "pos": "DET"
+ },
+ "lave": {
+  "lema": "lave",
+  "pos": "NOUN"
+ },
+ "llame": {
+  "lema": "llame",
+  "pos": "PROPN"
+ },
+ "los": {
+  "lema": "el",
+  "pos": "DET"
+ },
+ "manilla": {
+  "lema": "manilla",
+  "pos": "NOUN"
+ },
+ "mano": {
+  "lema": "mano",
+  "pos": "NOUN"
+ },
+ "manos": {
+  "lema": "mano",
+  "pos": "NOUN"
+ },
+ "mantenga": {
+  "lema": "mantener",
+  "pos": "VERB"
+ },
+ "mascarilla": {
+  "lema": "mascarilla",
+  "pos": "PROPN"
+ },
+ "mascotas": {
+  "lema": "mascota",
+  "pos": "NOUN"
+ },
+ "mañana": {
+  "lema": "mañana",
+  "pos": "ADV"
+ },
+ "metro": {
+  "lema": "metro",
+  "pos": "NOUN"
+ },
+ "mire": {
+  "lema": "mire",
+  "pos": "VERB"
+ },
+ "mojado": {
+  "lema": "mojado",
+  "pos": "ADJ"
+ },
+ "máxima": {
+  "lema": "máximo",
+  "pos": "ADJ"
+ },
+ "mínimo": {
+  "lema": "mínimo",
+  "pos": "ADJ"
+ },
+ "no": {
+  "lema": "no",
+  "pos": "ADV"
+ },
+ "nuevo": {
+  "lema": "nuevo",
+  "pos": "ADJ"
+ },
+ "nunca": {
+  "lema": "nunca",
+  "pos": "ADV"
+ },
+ "o": {
+  "lema": "o",
+  "pos": "CCONJ"
+ },
+ "obligatorio": {
+  "lema": "obligatorio",
+  "pos": "PROPN"
+ },
+ "ocurrió": {
+  "lema": "ocurrir",
+  "pos": "VERB"
+ },
+ "para": {
+  "lema": "para",
+  "pos": "ADP"
+ },
+ "pasamanos": {
+  "lema": "pasamano",
+  "pos": "NOUN"
+ },
+ "paso": {
+  "lema": "paso",
+  "pos": "NOUN"
+ },
+ "peldaños": {
+  "lema": "peldaño",
+  "pos": "NOUN"
+ },
+ "peligro": {
+  "lema": "peligro",
+  "pos": "PROPN"
+ },
+ "permanecerá": {
+  "lema": "permanecer",
+  "pos": "VERB"
+ },
+ "personal": {
+  "lema": "personal",
+  "pos": "NOUN"
+ },
+ "personas": {
+  "lema": "persona",
+  "pos": "NOUN"
+ },
+ "piso": {
+  "lema": "piso",
+  "pos": "NOUN"
+ },
+ "por": {
+  "lema": "por",
+  "pos": "ADP"
+ },
+ "precaución": {
+  "lema": "precaución",
+  "pos": "PROPN"
+ },
+ "preferencial": {
+  "lema": "preferencial",
+  "pos": "ADJ"
+ },
+ "presione": {
+  "lema": "presione",
+  "pos": "PROPN"
+ },
+ "prevención": {
+  "lema": "prevención",
+  "pos": "PROPN"
+ },
+ "prohibido": {
+  "lema": "prohibido",
+  "pos": "ADJ"
+ },
+ "protector": {
+  "lema": "protector",
+  "pos": "NOUN"
+ },
+ "punto": {
+  "lema": "punto",
+  "pos": "NOUN"
+ },
+ "quédese": {
+  "lema": "quédese",
+  "pos": "VERB"
+ },
+ "reanimación": {
+  "lema": "reanimación",
+  "pos": "NOUN"
+ },
+ "recargue": {
+  "lema": "recargue",
+  "pos": "PROPN"
+ },
+ "recinto": {
+  "lema": "recinto",
+  "pos": "NOUN"
+ },
+ "recomendaciones": {
+  "lema": "recomendación",
+  "pos": "NOUN"
+ },
+ "resbaladizo": {
+  "lema": "resbaladizo",
+  "pos": "ADJ"
+ },
+ "restringido": {
+  "lema": "restringido",
+  "pos": "ADJ"
+ },
+ "romper": {
+  "lema": "romper",
+  "pos": "VERB"
+ },
+ "salida": {
+  "lema": "salida",
+  "pos": "PROPN"
+ },
+ "saludar": {
+  "lema": "saludar",
+  "pos": "VERB"
+ },
+ "segura": {
+  "lema": "seguro",
+  "pos": "ADJ"
+ },
+ "seguridad": {
+  "lema": "seguridad",
+  "pos": "NOUN"
+ },
+ "semana": {
+  "lema": "semana",
+  "pos": "NOUN"
+ },
+ "será": {
+  "lema": "ser",
+  "pos": "AUX"
+ },
+ "si": {
+  "lema": "si",
+  "pos": "SCONJ"
+ },
+ "siempre": {
+  "lema": "siempre",
+  "pos": "ADV"
+ },
+ "siga": {
+  "lema": "siga",
+  "pos": "VERB"
+ },
+ "sismo": {
+  "lema": "sismo",
+  "pos": "NOUN"
+ },
+ "social": {
+  "lema": "social",
+  "pos": "ADJ"
+ },
+ "solo": {
+  "lema": "solo",
+  "pos": "ADJ"
+ },
+ "subir": {
+  "lema": "subir",
+  "pos": "VERB"
+ },
+ "sus": {
+  "lema": "su",
+  "pos": "DET"
+ },
+ "taller": {
+  "lema": "taller",
+  "pos": "NOUN"
+ },
+ "tarde": {
+  "lema": "tarde",
+  "pos": "NOUN"
+ },
+ "terremoto": {
+  "lema": "terremoto",
+  "pos": "NOUN"
+ },
+ "tosa": {
+  "lema": "tós",
+  "pos": "ADJ"
+ },
+ "tres": {
+  "lema": "tres",
+  "pos": "NUM"
+ },
+ "un": {
+  "lema": "uno",
+  "pos": "DET"
+ },
+ "usar": {
+  "lema": "usar",
+  "pos": "VERB"
+ },
+ "use": {
+  "lema": "use",
+  "pos": "VERB"
+ },
+ "uso": {
+  "lema": "uso",
+  "pos": "PROPN"
+ },
+ "usted": {
+  "lema": "usted",
+  "pos": "PRON"
+ },
+ "utilice": {
+  "lema": "utilice",
+  "pos": "PROPN"
+ },
+ "utilizar": {
+  "lema": "utilizar",
+  "pos": "VERB"
+ },
+ "vidrio": {
+  "lema": "vidrio",
+  "pos": "NOUN"
+ },
+ "voltaje": {
+  "lema": "voltaje",
+  "pos": "NOUN"
+ },
+ "vía": {
+  "lema": "vía",
+  "pos": "PROPN"
+ },
+ "y": {
+  "lema": "y",
+  "pos": "CCONJ"
+ },
+ "zona": {
+  "lema": "zona",
+  "pos": "NOUN"
+ },
+ "área": {
+  "lema": "área",
+  "pos": "NOUN"
+ }
+}

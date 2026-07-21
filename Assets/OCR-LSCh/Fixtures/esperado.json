@@ -1,0 +1,22 @@
+{
+ "1": {
+  "texto_ocr": "PROHIBIDO CORRER POR LA ESCALERA Q",
+  "texto_lsch": "CORRER ESCALERA PROHIBIDO"
+ },
+ "3": {
+  "texto_ocr": "VIA DE EVACUACION",
+  "texto_lsch": "VIA EVACUACION"
+ },
+ "10": {
+  "texto_ocr": "PROHIBIDO FUMAR. J0l",
+  "texto_lsch": "PROHIBIDO FUMAR / J0L"
+ },
+ "12": {
+  "texto_ocr": "PROHIBIDO CORRER NO RUNNING 7e",
+  "texto_lsch": "PROHIBIDO NO CORRER RUNNING 7E"
+ },
+ "19": {
+  "texto_ocr": "PREVENCIÓNDEL CONTACIO} DE CORONAVIRUS. USE ALCOHOL GEL. MAS PREVENCIÓN FRUNINUEVO CONTEXTO Qu",
+  "texto_lsch": "} PREVENCIÓNDEL CONTACIO CORONAVIRUS / ALCOHOL GEL USAR / PREVENCIÓN MAS FRUNINUEVO CONTEXTO / QU"
+ }
+}
