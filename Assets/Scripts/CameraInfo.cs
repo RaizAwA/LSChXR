@@ -10,6 +10,8 @@ public class CameraInfo : MonoBehaviour
     Texture texture;
 
     [SerializeField]
+    Transform camTransform;
+    [SerializeField]
     OVRHand ovrhandR;
     [SerializeField]
     OVRHand ovrhandL;
@@ -61,8 +63,9 @@ public class CameraInfo : MonoBehaviour
                     if (lastPrediction != "")
                     {
                         tmp.text = lastPrediction;
+                        animManager.MoveTo(this.transform);
                         //inferenceEngine.DisposeWorker(); //<- we get rid of the worker to see if that frees some GPU memory
-                        avatar3D.SetActive(true);
+                        //avatar3D.SetActive(true);
                         animManager.Interpret(lastPrediction);
                     }
                     else

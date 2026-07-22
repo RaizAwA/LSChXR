@@ -64,7 +64,7 @@ public class AnimatorManager : MonoBehaviour
                 {
                     triggerAnim = false;
                     anim.CrossFadeInFixedTime("Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Idle",1);
-                    StartCoroutine(SelfDisable());
+                    //StartCoroutine(SelfDisable());
                 }
             }
         }
@@ -183,6 +183,13 @@ public class AnimatorManager : MonoBehaviour
         }
         PlayAnim();
         
+    }
+
+    public void MoveTo(Transform transform)
+    {
+        Vector3 pos = new Vector3(transform.position.x,transform.position.y + 0.5f, transform.position.z + transform.forward.z - 0.5f);
+        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y-190,transform.rotation.z, transform.rotation.w);
+        this.transform.SetPositionAndRotation(pos, rotation);
     }
 
     public bool GetTriggerAnim()
