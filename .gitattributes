@@ -1,1 +1,5 @@
 Assets/Resources/HumanBasemesh.fbx filter=lfs diff=lfs merge=lfs -text
+
+# Modelos ONNX del pipeline OCR: craft_detector.onnx pesa 83 MB y GitHub
+# rechaza los archivos de mas de 100 MB (y avisa a partir de 50 MB).
+*.onnx filter=lfs diff=lfs merge=lfs -text
