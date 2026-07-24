@@ -18,6 +18,8 @@ public class CameraInfo : MonoBehaviour
     [SerializeField]
     InferenceEngine inferenceEngine;
     [SerializeField]
+    PipelineCartel ocrEngine;
+    [SerializeField]
     GameObject avatar3D;
     AnimatorManager animManager;
     [SerializeField]
@@ -59,11 +61,12 @@ public class CameraInfo : MonoBehaviour
             {
                 if (texture != null && !animManager.GetTriggerAnim())
                 {
-                    lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                    //lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                    lastPrediction = ocrEngine.ProcesarFrame(texture);
                     if (lastPrediction != "")
                     {
                         tmp.text = lastPrediction;
-                        animManager.MoveTo(this.transform);
+                        animManager.MoveTo(camTransform);
                         //inferenceEngine.DisposeWorker(); //<- we get rid of the worker to see if that frees some GPU memory
                         //avatar3D.SetActive(true);
                         animManager.Interpret(lastPrediction);

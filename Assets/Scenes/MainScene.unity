@@ -1115,6 +1115,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1713833928}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &853616072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 853616075}
+  - component: {fileID: 853616074}
+  - component: {fileID: 853616073}
+  m_Layer: 0
+  m_Name: OCRManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &853616073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853616072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd39912989bd6bd4f97fd4e1246e3092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ValidadorFixtures
+  pipeline: {fileID: 853616074}
+  fixtures: []
+--- !u!114 &853616074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853616072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45e3038600f3fd499c6cf0c00521494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PipelineCartel
+  modeloCraft: {fileID: 5022602860645237092, guid: cdf00820b0acb8a488939f6041e0c46d, type: 3}
+  modeloCrnn: {fileID: 5022602860645237092, guid: 33f5d00a401f779428c36ca1fd01d3be, type: 3}
+  charsetCtc: {fileID: 4900000, guid: 121dcc9de8b9d6a46b757bca4e61b1b3, type: 3}
+  lexicoEs: {fileID: 4900000, guid: c28ac53d0cb28814ca3658a49ce233db, type: 3}
+  backend: 256
+  voltearVertical: 0
+  TextoOcr: 
+  TextoLsch: 
+  AlObtenerGlosa:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &853616075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853616072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &875210064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1301,7 @@ MonoBehaviour:
   ovrhandR: {fileID: 1095576158}
   ovrhandL: {fileID: 317831156}
   inferenceEngine: {fileID: 1092927822}
+  ocrEngine: {fileID: 853616074}
   avatar3D: {fileID: 1911035517}
   tmp: {fileID: 2095801438}
   proccesingInterval: 0.15
@@ -1249,7 +1320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6888361391311045333, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773858536431025047, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2798,3 +2869,4 @@ SceneRoots:
   - {fileID: 953394943}
   - {fileID: 1092927821}
   - {fileID: 1734813544}
+  - {fileID: 853616075}

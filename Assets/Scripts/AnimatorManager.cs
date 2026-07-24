@@ -72,7 +72,10 @@ public class AnimatorManager : MonoBehaviour
 
     void PlayAnim()
     {
-        triggerAnim = true;
+        if (animFifo.Count != 0)
+        {
+            triggerAnim = true;
+        }
         
     }
 
@@ -187,8 +190,10 @@ public class AnimatorManager : MonoBehaviour
 
     public void MoveTo(Transform transform)
     {
-        Vector3 pos = new Vector3(transform.position.x,transform.position.y + 0.5f, transform.position.z + transform.forward.z - 0.5f);
-        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y-190,transform.rotation.z, transform.rotation.w);
+        //Vector3 pos = new Vector3(transform.position.x + (transform.forward.x/2),transform.position.y + 0.5f + (transform.forward.x/2), transform.position.z + (transform.forward.z/2));
+        Vector3 pos = transform.position + (transform.forward * 0.5f) - new Vector3(0,transform.forward.y +0.9f,0);
+        //Quaternion rotation = Quaternion.LookRotation(this.transform.position - transform.position);
+        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y,transform.rotation.z, transform.rotation.w) * Quaternion.Euler(0f,180f,0f);
         this.transform.SetPositionAndRotation(pos, rotation);
     }
 
@@ -197,9 +202,21 @@ public class AnimatorManager : MonoBehaviour
         return this.triggerAnim;
     }
 
-    IEnumerator SelfDisable()
+    public void CancelInterpretation()
     {
+        if (triggerAnim && animFifo.Count != 0)
+        {
+            StartCoroutine(CancelAnimation());
+        }
+    }
+
+    IEnumerator CancelAnimation()
+    {
+        wordFifo.Clear();
+        animFifo.Clear();
+        anim.CrossFadeInFixedTime("Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Idle",1);
         yield return new WaitForSeconds(1.5f); // <- we wait for the crossfade IDLE animation to end.
-        gameObject.SetActive(false);
+        triggerAnim = false;
+        currentState = AnimStates.IDLE;
     }
 }
