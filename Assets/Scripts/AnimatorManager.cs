@@ -1,14 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using TMPro;
 
 
 
 public class AnimatorManager : MonoBehaviour
 {
+    /*
     [SerializeField]
     CameraInfo camInfo;
+    */
+    [SerializeField]
+    TextMeshPro tmp;
 
     [System.Serializable]
     public struct Dict
@@ -41,7 +45,7 @@ public class AnimatorManager : MonoBehaviour
     
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
        
     }
 
@@ -59,12 +63,13 @@ public class AnimatorManager : MonoBehaviour
                 currentState = AnimStates.IDLE;
                 wordFifo.RemoveAt(0);
                 animFifo.RemoveAt(0);
-                //Finished interpreting, now we stop the animation loop, return to IDLE pose and self disable ourselves
+                //Finished interpreting, now we stop the animation loop, return to IDLE pose
                 if(animFifo.Count == 0)
                 {
                     triggerAnim = false;
                     anim.CrossFadeInFixedTime("Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Idle",1);
-                    //StartCoroutine(SelfDisable());
+                    ChangeText("");
+
                 }
             }
         }
@@ -75,6 +80,10 @@ public class AnimatorManager : MonoBehaviour
         if (animFifo.Count != 0)
         {
             triggerAnim = true;
+        }
+        else
+        {
+            ChangeText("");
         }
         
     }
@@ -191,9 +200,9 @@ public class AnimatorManager : MonoBehaviour
     public void MoveTo(Transform transform)
     {
         //Vector3 pos = new Vector3(transform.position.x + (transform.forward.x/2),transform.position.y + 0.5f + (transform.forward.x/2), transform.position.z + (transform.forward.z/2));
-        Vector3 pos = transform.position + (transform.forward * 0.5f) - new Vector3(0,transform.forward.y +0.9f,0);
+        Vector3 pos = transform.position + (transform.forward * 0.5f);// - new Vector3(0,0.9f,0);//transform.forward.y +
         //Quaternion rotation = Quaternion.LookRotation(this.transform.position - transform.position);
-        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y,transform.rotation.z, transform.rotation.w) * Quaternion.Euler(0f,180f,0f);
+        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y,transform.rotation.z, transform.rotation.w); //* Quaternion.Euler(0f,180f,0f);
         this.transform.SetPositionAndRotation(pos, rotation);
     }
 
@@ -209,13 +218,19 @@ public class AnimatorManager : MonoBehaviour
             StartCoroutine(CancelAnimation());
         }
     }
+    public void ChangeText(string text)
+    {
+        tmp.text = text;
+    }
 
     IEnumerator CancelAnimation()
     {
         wordFifo.Clear();
         animFifo.Clear();
+        ChangeText("Cancelando animación...");
         anim.CrossFadeInFixedTime("Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Idle",1);
         yield return new WaitForSeconds(1.5f); // <- we wait for the crossfade IDLE animation to end.
+        ChangeText("");
         triggerAnim = false;
         currentState = AnimStates.IDLE;
     }

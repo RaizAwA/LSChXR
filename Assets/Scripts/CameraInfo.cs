@@ -22,15 +22,14 @@ public class CameraInfo : MonoBehaviour
     [SerializeField]
     GameObject avatar3D;
     AnimatorManager animManager;
-    [SerializeField]
-    TextMeshPro tmp;
 
     [SerializeField]
     float proccesingInterval = 0.15f;
 
     [SerializeField]
     string lastPrediction = "";
-    bool isPinching = false;
+    bool isPinchingR = false;
+    bool isPinchingL = false;
     bool runCNN = true;
     
 
@@ -38,6 +37,7 @@ public class CameraInfo : MonoBehaviour
     {
         animManager = avatar3D.GetComponent<AnimatorManager>();
         cameraAccess = GetComponent<PassthroughCameraAccess>();
+        animManager.MoveTo(camTransform);
     }
 
     // Update is called once per frame
@@ -54,28 +54,39 @@ public class CameraInfo : MonoBehaviour
 
             if ((ovrhandL != null && ovrhandR != null) && (ovrhandL.IsTracked || ovrhandR.IsTracked))
             {
-                isPinching = (ovrhandL.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandL.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) || 
-                             (ovrhandR.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandR.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High);
+                isPinchingL = (ovrhandL.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandL.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) && !ovrhandL.IsSystemGestureInProgress; 
+                isPinchingR = (ovrhandR.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandR.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) && !ovrhandR.IsSystemGestureInProgress;
             }
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinching)
+            
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingR)
             {
                 if (texture != null && !animManager.GetTriggerAnim())
                 {
-                    //lastPrediction = inferenceEngine.ProcesarImagen(texture);
-                    lastPrediction = ocrEngine.ProcesarFrame(texture);
+                    lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                    //lastPrediction = ocrEngine.ProcesarFrame(texture);
+                    animManager.MoveTo(camTransform);
                     if (lastPrediction != "")
                     {
-                        tmp.text = lastPrediction;
-                        animManager.MoveTo(camTransform);
+                        animManager.ChangeText(lastPrediction);
                         //inferenceEngine.DisposeWorker(); //<- we get rid of the worker to see if that frees some GPU memory
                         //avatar3D.SetActive(true);
                         animManager.Interpret(lastPrediction);
                     }
                     else
                     {
-                        tmp.text = "Ninguna señal detectada...";
+                       animManager.ChangeText("Ninguna señal detectada...");
                     }
                     
+                }
+                
+            }
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingL)
+            {
+                animManager.MoveTo(camTransform);
+                if (animManager.GetTriggerAnim())
+                {
+                    
+                    animManager.CancelInterpretation();
                 }
                 
             }
