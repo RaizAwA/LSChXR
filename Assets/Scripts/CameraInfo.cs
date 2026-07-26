@@ -11,6 +11,12 @@ public class CameraInfo : MonoBehaviour
 
     [SerializeField]
     Transform camTransform;
+    /*
+    [SerializeField]
+    OVRPlugin.Controller.LTouch ltouch;
+    [SerializeField]
+    OVRPlugin.Controller.RTouch rtouch;
+    */
     [SerializeField]
     OVRHand ovrhandR;
     [SerializeField]
@@ -58,8 +64,9 @@ public class CameraInfo : MonoBehaviour
                 isPinchingR = (ovrhandR.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandR.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) && !ovrhandR.IsSystemGestureInProgress;
             }
             
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingR)
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingR)
             {
+                Debug.Log(OVRInput.GetActiveController().ToString());
                 if (texture != null && !animManager.GetTriggerAnim())
                 {
                     lastPrediction = inferenceEngine.ProcesarImagen(texture);
@@ -80,7 +87,7 @@ public class CameraInfo : MonoBehaviour
                 }
                 
             }
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingL)
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingL)
             {
                 animManager.MoveTo(camTransform);
                 if (animManager.GetTriggerAnim())
