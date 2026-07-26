@@ -116,7 +116,12 @@ namespace OcrLsch.Vision
                     if (contenedor == null || c.Area < contenedor.Area) contenedor = c;
             if (contenedor != null) elegido = contenedor;
 
-            return EsquinasPorLados(elegido.Contorno) ?? EsquinasPorRectangulo(elegido.Contorno);
+            // El port C# usa el rectángulo mínimo como método PRIMARIO: es más
+            // determinista que la extrapolación por lados y evita el clip del
+            // borde en escenas con clutter (recupera la imagen 2). La referencia
+            // Python conserva _esquinas_por_lados, más preciso gracias a
+            // cv2.approxPolyDP; EsquinasPorLados queda como respaldo.
+            return EsquinasPorRectangulo(elegido.Contorno) ?? EsquinasPorLados(elegido.Contorno);
         }
 
         static bool Contiene(Rect a, Rect b, double tol = 0.05)
