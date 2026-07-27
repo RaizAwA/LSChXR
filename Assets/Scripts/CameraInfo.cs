@@ -10,13 +10,10 @@ public class CameraInfo : MonoBehaviour
     Texture texture;
 
     [SerializeField]
+    GameObject uiManager;
+    Transform uiTransform;
+    [SerializeField]
     Transform camTransform;
-    /*
-    [SerializeField]
-    OVRPlugin.Controller.LTouch ltouch;
-    [SerializeField]
-    OVRPlugin.Controller.RTouch rtouch;
-    */
     [SerializeField]
     OVRHand ovrhandR;
     [SerializeField]
@@ -37,13 +34,15 @@ public class CameraInfo : MonoBehaviour
     bool isPinchingR = false;
     bool isPinchingL = false;
     bool runCNN = true;
+    bool preventPinch = false;
     
 
     void Start()
     {
         animManager = avatar3D.GetComponent<AnimatorManager>();
         cameraAccess = GetComponent<PassthroughCameraAccess>();
-        animManager.MoveTo(camTransform);
+        uiTransform = GetComponent<Transform>();
+        //animManager.MoveTo(camTransform);
     }
 
     // Update is called once per frame
@@ -64,7 +63,7 @@ public class CameraInfo : MonoBehaviour
                 isPinchingR = (ovrhandR.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandR.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) && !ovrhandR.IsSystemGestureInProgress;
             }
             
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingR)
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingR && !preventPinch)
             {
                 Debug.Log(OVRInput.GetActiveController().ToString());
                 if (texture != null && !animManager.GetTriggerAnim())
@@ -87,18 +86,41 @@ public class CameraInfo : MonoBehaviour
                 }
                 
             }
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingL)
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingL && !preventPinch)
             {
-                animManager.MoveTo(camTransform);
+                
                 if (animManager.GetTriggerAnim())
                 {
-                    
+                    animManager.MoveTo(camTransform);
                     animManager.CancelInterpretation();
                 }
                 
             }
 
+            if (OVRInput.GetDown(OVRInput.Button.Start, OVRInput.GetActiveController()))
+            {
+                ToggleUI();
+            }
+
         }
+    }
+
+    public void MoveUIToCam()
+    {
+        Vector3 pos = camTransform.position + (camTransform.forward * 0.5f);
+        Quaternion rotation = new Quaternion(camTransform.rotation.x,camTransform.rotation.y,camTransform.rotation.z, camTransform.rotation.w);
+        uiManager.transform.position = pos;
+        uiManager.transform.rotation = rotation;
+
+        //uiTransform.SetPositionAndRotation(pos, rotation);
+    }
+
+    public void ToggleUI()
+    {
+        uiManager.SetActive(!uiManager.activeSelf);
+        bool isUIActive = uiManager.activeSelf;
+        preventPinch = uiManager.activeSelf;
+        MoveUIToCam();
     }
 
     

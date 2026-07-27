@@ -37,7 +37,6 @@ public class AnimatorManager : MonoBehaviour
     {
         IDLE,
         IS_ANIMATING,
-        FINISH
     }
 
     AnimStates currentState = AnimStates.IDLE;
@@ -199,10 +198,8 @@ public class AnimatorManager : MonoBehaviour
 
     public void MoveTo(Transform transform)
     {
-        //Vector3 pos = new Vector3(transform.position.x + (transform.forward.x/2),transform.position.y + 0.5f + (transform.forward.x/2), transform.position.z + (transform.forward.z/2));
-        Vector3 pos = transform.position + (transform.forward * 0.5f);// - new Vector3(0,0.9f,0);//transform.forward.y +
-        //Quaternion rotation = Quaternion.LookRotation(this.transform.position - transform.position);
-        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y,transform.rotation.z, transform.rotation.w); //* Quaternion.Euler(0f,180f,0f);
+        Vector3 pos = transform.position + (transform.forward * 0.5f);
+        Quaternion rotation = new Quaternion(transform.rotation.x,transform.rotation.y,transform.rotation.z, transform.rotation.w);
         this.transform.SetPositionAndRotation(pos, rotation);
     }
 

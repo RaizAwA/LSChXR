@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c272b0b25a1116a458fed60f09372da1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f22407ba6b4157b4a93d0a670bd3dd57, type: 3}
+  dynamicDimConfigs:
+  - name: p2o.DynamicDimension.0
+    size: -1
+  - name: '?'
+    size: -1
+  - name: p2o.DynamicDimension.1
+    size: -1
