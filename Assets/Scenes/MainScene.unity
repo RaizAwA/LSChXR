@@ -12886,7 +12886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &853616075
 Transform:
   m_ObjectHideFlags: 0
@@ -16381,6 +16381,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[0]'
+      value: CORRER NO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[1]'
+      value: ALCOHOL GEL USAR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[2]'
+      value: "EVACUACI\xD3N DERECHA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[3]'
+      value: EXTINTOR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[4]'
+      value: FUMAR NO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[5]'
+      value: ESCALERAS CORRER NO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[6]'
+      value: PASAMANOS USAR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[7]'
+      value: "EVACUACI\xD3N DERECHA ABAJO"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[8]'
+      value: "RED H\xDAMEDA"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[9]'
+      value: ASCENSOR USAR NO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[10]'
+      value: ELECTRICIDAD PELIGRO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[11]'
+      value: ENTRAR PROHIBIDO
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[12]'
+      value: MASCARILLA USAR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3071055291601904104, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
+      propertyPath: 'classNames.Array.data[13]'
+      value: "MANOS LAVAR AGUA JAB\xD3N"
+      objectReference: {fileID: 0}
     - target: {fileID: 6888361391311045333, guid: 71f0738a776c7b9429da791d0350b78f, type: 3}
       propertyPath: m_Name
       value: IAManager
@@ -33817,6 +33873,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 953394944}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseApplication
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraInfo, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670593165467549776, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2747640555007155004, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -33932,6 +34016,34 @@ PrefabInstance:
     - target: {fileID: 3429956994907952328, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
       propertyPath: m_LocalScale.y
       value: 3.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 953394944}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeAlgorithm
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraInfo, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575993266905214701, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: WhenSelectionChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4048222203807740215, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
       propertyPath: m_AnchorMax.y
@@ -34196,6 +34308,34 @@ PrefabInstance:
     - target: {fileID: 7080620083462586894, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 953394944}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveAvatar3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraInfo, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374782841861436724, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7537089303197737837, guid: 1f761e05c5b2c9342bf215381727ec62, type: 3}
       propertyPath: m_AnchorMax.y

@@ -35,6 +35,7 @@ public class CameraInfo : MonoBehaviour
     bool isPinchingL = false;
     bool runCNN = true;
     bool preventPinch = false;
+    int indexAlgoritmo = 0;
     
 
     void Start()
@@ -68,7 +69,20 @@ public class CameraInfo : MonoBehaviour
                 Debug.Log(OVRInput.GetActiveController().ToString());
                 if (texture != null && !animManager.GetTriggerAnim())
                 {
-                    lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                    switch (indexAlgoritmo)
+                    {
+                        case 0:
+                            lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                            break;
+                        case 1:
+                            lastPrediction = ocrEngine.ProcesarFrame(texture);
+                            break;
+                        default:
+                            lastPrediction = inferenceEngine.ProcesarImagen(texture);
+                            break;
+                    }
+                    
+                    //lastPrediction = inferenceEngine.ProcesarImagen(texture);
                     //lastPrediction = ocrEngine.ProcesarFrame(texture);
                     animManager.MoveTo(camTransform);
                     if (lastPrediction != "")
@@ -115,12 +129,27 @@ public class CameraInfo : MonoBehaviour
         //uiTransform.SetPositionAndRotation(pos, rotation);
     }
 
+    public void MoveAvatar3D()
+    {
+        animManager.MoveTo(camTransform);
+    }
+
     public void ToggleUI()
     {
         uiManager.SetActive(!uiManager.activeSelf);
         bool isUIActive = uiManager.activeSelf;
         preventPinch = uiManager.activeSelf;
         MoveUIToCam();
+    }
+
+    public void CloseApplication()
+    {
+        Application.Quit();
+    }
+
+    public void ChangeAlgorithm(int index)
+    {
+        indexAlgoritmo = index;
     }
 
     
