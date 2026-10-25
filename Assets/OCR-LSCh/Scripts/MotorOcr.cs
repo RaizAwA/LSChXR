@@ -46,7 +46,10 @@ public class MotorOcr : System.IDisposable
     /// <summary>OCR completo sobre el cartel corregido en gris (500x700).</summary>
     public string Leer(ImagenGris cartel)
     {
+        double t0 = Latencias.AhoraMs;
         List<CajaTexto> cajas = DetectarCajas(cartel);
+        double t1 = Latencias.AhoraMs;
+        Latencias.Etapa("ocr_deteccion", t1 - t0);
         var detecciones = new List<DeteccionOcr>();
         foreach (var caja in cajas)
         {
@@ -62,7 +65,11 @@ public class MotorOcr : System.IDisposable
                 Abajo = caja.Y + caja.H,
             });
         }
-        return OcrPaddle.FiltrarYOrdenar(detecciones, cartel.Ancho, cartel.Alto);
+        double t2 = Latencias.AhoraMs;
+        Latencias.Etapa("ocr_reconocimiento", t2 - t1);
+        string texto = OcrPaddle.FiltrarYOrdenar(detecciones, cartel.Ancho, cartel.Alto);
+        Latencias.Etapa("ocr_filtrado", Latencias.AhoraMs - t2);
+        return texto;
     }
 
     // ---------------- Detector DB (PP-OCRv4) ----------------

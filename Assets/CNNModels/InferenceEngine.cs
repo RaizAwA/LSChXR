@@ -51,12 +51,17 @@ public class InferenceEngine : MonoBehaviour
             if (worker == null) return "";
         }
 
+        double t0 = Latencias.AhoraMs;
         Unity.InferenceEngine.TextureTransform transform = new Unity.InferenceEngine.TextureTransform()
             .SetDimensions(640, 640, 3);
 
         using Unity.InferenceEngine.Tensor<float> inputTensor = Unity.InferenceEngine.TextureConverter.ToTensor(camaraTexture, transform); 
+        double t1 = Latencias.AhoraMs;
+        Latencias.Etapa("preprocesamiento", t1 - t0);
         worker.Schedule(inputTensor); 
         Unity.InferenceEngine.Tensor<float> outputTensor = worker.PeekOutput() as Unity.InferenceEngine.Tensor<float>; 
+        // La GPU termina de forma asincrona: el resto de la inferencia se mide al leer la salida (PostProcessingUnit).
+        Latencias.Etapa("inferencia_cnn", Latencias.AhoraMs - t1);
 
         if (postProcessor != null)
         {

@@ -41,6 +41,11 @@ public class AnimatorManager : MonoBehaviour
 
     AnimStates currentState = AnimStates.IDLE;
     bool triggerAnim= false;
+
+    // Eventos para medir latencias (Latencias.cs, en CameraInfo). No cambian el comportamiento.
+    public event System.Action AlIniciarAnimacion;          // se ordena la primera sena de la secuencia
+    public event System.Action<bool> AlTerminarAnimacion;   // termina la secuencia (true = cancelada)
+    bool secuenciaIniciada = false;
     
     void Start()
     {
@@ -57,6 +62,11 @@ public class AnimatorManager : MonoBehaviour
             {
                 currentState = AnimStates.IS_ANIMATING;
                 anim.CrossFadeInFixedTime(animFifo[0],1,0,-1);
+                if (!secuenciaIniciada)
+                {
+                    secuenciaIniciada = true;
+                    AlIniciarAnimacion?.Invoke();
+                }
                 
             }else if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime>1 && !anim.IsInTransition(0)){
                 currentState = AnimStates.IDLE;
@@ -68,6 +78,8 @@ public class AnimatorManager : MonoBehaviour
                     triggerAnim = false;
                     anim.CrossFadeInFixedTime("Male_Basemesh_Rig_01|Male_Basemesh_Rig_01_Idle",1);
                     ChangeText("");
+                    secuenciaIniciada = false;
+                    AlTerminarAnimacion?.Invoke(false);
 
                 }
             }
@@ -222,6 +234,8 @@ public class AnimatorManager : MonoBehaviour
 
     IEnumerator CancelAnimation()
     {
+        secuenciaIniciada = false;
+        AlTerminarAnimacion?.Invoke(true);
         wordFifo.Clear();
         animFifo.Clear();
         ChangeText("Cancelando animación...");

@@ -9,7 +9,10 @@ public class PostProcessingUnit : MonoBehaviour
     public string ParsearSalidaYOLO(Unity.InferenceEngine.Tensor<float> outputTensor, float threshold)
     {
         if (outputTensor == null) return null;
-        float[] data = outputTensor.DownloadToArray();
+        double t0 = Latencias.AhoraMs;
+        float[] data = outputTensor.DownloadToArray(); // espera a que la GPU termine la inferencia
+        double t1 = Latencias.AhoraMs;
+        Latencias.Etapa("inferencia_cnn", t1 - t0);
 
         int numRows = 18;
         int numAnchors = 8400;
@@ -39,6 +42,8 @@ public class PostProcessingUnit : MonoBehaviour
                 mejorClaseId = claseGanadoraParaEstaCaja;
             }
         }
+
+        Latencias.Etapa("postproceso_cnn", Latencias.AhoraMs - t1);
 
         if (mejorClaseId != -1 && mejorClaseId < classNames.Length)
         {

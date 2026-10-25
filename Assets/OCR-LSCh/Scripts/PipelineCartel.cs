@@ -87,7 +87,9 @@ public class PipelineCartel : MonoBehaviour
         // El CNN sube la textura directo a la GPU, pero el preprocesamiento de
         // aqui (contornos, homografia, CLAHE) corre en CPU y necesita los
         // pixeles: de ahi el paso por TexturaLegible.
+        double t0 = Latencias.AhoraMs;
         Texture2D legible = _lector.Obtener(frame, voltearVertical);
+        Latencias.Etapa("lectura_textura", Latencias.AhoraMs - t0);
         if (legible == null)
         {
             TextoOcr = "";
@@ -101,7 +103,9 @@ public class PipelineCartel : MonoBehaviour
     /// ProcesarFrame() si lo que se tiene es la textura de la camara.</summary>
     public string ProcesarTextura(Texture2D frame)
     {
+        double t0 = Latencias.AhoraMs;
         ImagenGris cartel = PuenteImagen.PrepararDesdeTextura(frame);
+        Latencias.Etapa("preprocesamiento", Latencias.AhoraMs - t0);
         return ProcesarCartel(cartel);
     }
 
@@ -115,9 +119,18 @@ public class PipelineCartel : MonoBehaviour
 
     string ProcesarCartel(ImagenGris cartel)
     {
+        bool cargaba = _ocr == null || _pln == null;
+        double t0 = Latencias.AhoraMs;
         Asegurar();
-        TextoOcr = _ocr.Leer(cartel);
+        if (cargaba)
+        {
+            Latencias.Etapa("carga_modelos_ocr", Latencias.AhoraMs - t0);
+            Latencias.MarcarPrimeraEjecucion();
+        }
+        TextoOcr = _ocr.Leer(cartel); // mide deteccion, reconocimiento y filtrado por dentro
+        double t1 = Latencias.AhoraMs;
         TextoLsch = string.IsNullOrWhiteSpace(TextoOcr) ? "" : _pln.Transformar(TextoOcr);
+        Latencias.Etapa("pln", Latencias.AhoraMs - t1);
         AlObtenerGlosa?.Invoke(TextoLsch);
         return TextoLsch;
     }

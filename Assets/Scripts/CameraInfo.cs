@@ -36,11 +36,28 @@ public class CameraInfo : MonoBehaviour
     bool runCNN = true;
     bool preventPinch = false;
     int indexAlgoritmo = 0;
+    bool pinchRAnterior = false;                 // para escanear una sola vez por pellizco
+    Latencias.Medicion medicionPendiente;        // medicion que espera el fin de la animacion
     
 
     void Start()
     {
         animManager = avatar3D.GetComponent<AnimatorManager>();
+        animManager.AlIniciarAnimacion += () =>
+        {
+            if (medicionPendiente != null) medicionPendiente.TInicioAnimacion = Latencias.AhoraMs;
+        };
+        animManager.AlTerminarAnimacion += cancelada =>
+        {
+            Latencias.Medicion m = medicionPendiente;
+            medicionPendiente = null;
+            if (m == null) return;
+            m.TFinAnimacion = Latencias.AhoraMs;
+            m.Cancelada = cancelada;
+            Latencias.Guardar(m);
+            if (Latencias.MostrarEnPantalla && !cancelada)
+                animManager.ChangeText("<size=50%>" + Latencias.Resumen(m) + "</size>");
+        };
         cameraAccess = GetComponent<PassthroughCameraAccess>();
         uiTransform = GetComponent<Transform>();
         //animManager.MoveTo(camTransform);
@@ -64,11 +81,14 @@ public class CameraInfo : MonoBehaviour
                 isPinchingR = (ovrhandR.GetFingerIsPinching(OVRHand.HandFinger.Index) && ovrhandR.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High) && !ovrhandR.IsSystemGestureInProgress;
             }
             
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || isPinchingR && !preventPinch)
+            bool pinchRNuevo = isPinchingR && !pinchRAnterior;
+            pinchRAnterior = isPinchingR;
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger, OVRInput.GetActiveController()) || pinchRNuevo && !preventPinch)
             {
                 Debug.Log(OVRInput.GetActiveController().ToString());
                 if (texture != null && !animManager.GetTriggerAnim())
                 {
+                    Latencias.Medicion medicion = Latencias.Iniciar(indexAlgoritmo == 1 ? "OCR" : "CNN");
                     switch (indexAlgoritmo)
                     {
                         case 0:
@@ -85,16 +105,35 @@ public class CameraInfo : MonoBehaviour
                     //lastPrediction = inferenceEngine.ProcesarImagen(texture);
                     //lastPrediction = ocrEngine.ProcesarFrame(texture);
                     animManager.MoveTo(camTransform);
+                    if (medicion != null)
+                    {
+                        medicion.TTextoListo = Latencias.AhoraMs;
+                        medicion.Resultado = lastPrediction;
+                    }
                     if (lastPrediction != "")
                     {
-                        animManager.ChangeText(lastPrediction);
+                        animManager.ChangeText(ConLatencia(lastPrediction, medicion));
                         //inferenceEngine.DisposeWorker(); //<- we get rid of the worker to see if that frees some GPU memory
                         //avatar3D.SetActive(true);
                         animManager.Interpret(lastPrediction);
+                        if (medicion != null)
+                        {
+                            medicion.NAnimaciones = animManager.animFifo.Count;
+                            if (medicion.NAnimaciones > 0)
+                            {
+                                medicionPendiente = medicion; // se guarda al terminar la animacion
+                            }
+                            else
+                            {
+                                Latencias.Guardar(medicion);
+                                animManager.ChangeText(ConLatencia(lastPrediction, medicion));
+                            }
+                        }
                     }
                     else
                     {
-                       animManager.ChangeText("Ninguna señal detectada...");
+                       animManager.ChangeText(ConLatencia("Ninguna señal detectada...", medicion));
+                       Latencias.Guardar(medicion);
                     }
                     
                 }
@@ -117,6 +156,13 @@ public class CameraInfo : MonoBehaviour
             }
 
         }
+    }
+
+    // Agrega el resumen de latencia al texto del panel (si esta activado en Latencias).
+    string ConLatencia(string texto, Latencias.Medicion m)
+    {
+        if (!Latencias.MostrarEnPantalla || m == null) return texto;
+        return texto + "\n<size=50%>" + Latencias.Resumen(m) + "</size>";
     }
 
     public void MoveUIToCam()
