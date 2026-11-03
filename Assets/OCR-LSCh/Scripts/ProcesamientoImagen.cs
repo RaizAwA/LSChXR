@@ -48,6 +48,16 @@ namespace OcrLsch.Vision
         const double FraccionAreaCompetencia = 0.30;
         const double DensidadBordesMinima = 0.02;
 
+        // Atenuacion de reflejos (inpainting de zonas casi blancas y sin color).
+        // DESACTIVADA (31-10-2026), igual que en la referencia Python
+        // (ATENUAR_REFLEJOS = False): el criterio "V > 245 y S < 40" no distingue
+        // un reflejo de una LETRA BLANCA y borraba el mensaje de los carteles con
+        // texto blanco sobre fondo de color (p. ej., diseno ACHS). Con la etapa
+        // desactivada la referencia pasa de 40/60 a 45/60 mensajes completos en
+        // img_2 y de 9/10 a 10/10 en las fotos de desarrollo. Se conserva el
+        // codigo por si se reactiva con un criterio que excluya el texto.
+        public static bool AtenuarReflejosActivo = false;
+
         public static ImagenGris PrepararCartel(ImagenColor imgBgr)
         {
             ImagenColor enderezado = CorregirPerspectiva(imgBgr);
@@ -288,8 +298,8 @@ namespace OcrLsch.Vision
 
         static ImagenGris MejorarParaOcr(ImagenColor img)
         {
-            ImagenColor sinReflejos = AtenuarReflejos(img);
-            ImagenGris gris = Ops.AGris(sinReflejos);
+            ImagenColor entrada = AtenuarReflejosActivo ? AtenuarReflejos(img) : img;
+            ImagenGris gris = Ops.AGris(entrada);
             ImagenGris plano = AplanarIluminacion(gris);
             return SuprimirLetraPequenaPeriferica(plano);
         }

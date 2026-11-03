@@ -205,6 +205,17 @@ namespace OcrLsch.Vision
         // Dos cajas se agrupan si su separación es menor que este múltiplo de
         // la altura mediana de línea (idea 1: separar el cartel del afiche/logo).
         const float FactorClusterProximidad = 1.5f;
+        // Agrupacion "por columna" (31-10-2026): dos cajas se unen si se solapan
+        // en horizontal, sin importar la distancia vertical. Con el criterio
+        // anterior (ademas, cercanas en vertical) el pictograma separaba el
+        // encabezado del mensaje en carteles como "PREVENCION DEL CONTAGIO DE
+        // CORONAVIRUS / USE MASCARILLA": quedaban en grupos distintos y se
+        // conservaba solo el encabezado. El texto de afiches o carteles vecinos,
+        // ubicado a un costado, sigue sin solaparse y se descarta igual (imagen
+        // 4 de desarrollo). Pipeline C# completo, mensaje leido completo:
+        // img_2 34/60 -> 41/60; fotos de desarrollo 9/10 -> 9/10 (CER 0,4 %).
+        // false = criterio anterior.
+        public static bool ClusterPorColumna = true;
 
         /// <summary>Filtra las detecciones y arma el texto final. Respecto a la
         /// referencia Python, añade un paso de CLÚSTER ESPACIAL: agrupa las
@@ -294,7 +305,7 @@ namespace OcrLsch.Vision
                 {
                     float solapeX = Math.Min(cajas[i].Derecha, cajas[j].Derecha) - Math.Max(cajas[i].X, cajas[j].X);
                     float dy = Math.Max(0, Math.Max(cajas[i].Arriba, cajas[j].Arriba) - Math.Min(cajas[i].Abajo, cajas[j].Abajo));
-                    if (solapeX > 0 && dy <= umbral) Union(i, j);
+                    if (solapeX > 0 && (ClusterPorColumna || dy <= umbral)) Union(i, j);
                 }
 
             var grupos = new Dictionary<int, List<int>>();

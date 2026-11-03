@@ -4,12 +4,12 @@
   "texto_lsch": "PROHIBIDO CORRER POR ÉL ESCALERA / MLLAL"
  },
  "10": {
-  "texto_ocr": "PROHIBIDO FUMAR. MUTUAL desegusidad",
-  "texto_lsch": "PROHIBIDO FUMAR / DESEGUSIDAD MUTUAL"
+  "texto_ocr": "PROHIBIDO FUMAR. MUTLAL descguridod",
+  "texto_lsch": "PROHIBIDO FUMAR / MUTLAL DESCGURIDOD"
  },
  "11": {
-  "texto_ocr": "PROHIBIDO COMERO BEBER ENESTA AREA",
-  "texto_lsch": "COMERO PROHIBIDO BEBER ENESTA AREO"
+  "texto_ocr": "PROHIBIDO COMERO BEBER EN ESTA AREA",
+  "texto_lsch": "COMERO PROHIBIDO BEBER AREA"
  },
  "12": {
   "texto_ocr": "PROHIBIDO CORRER NO RUNNING. deseguridud",
@@ -20,8 +20,8 @@
   "texto_lsch": "OBLIGATORIO USAR ALCOHOLGEL"
  },
  "2": {
-  "texto_ocr": "ACCESO RESTRINGIDO SOLO PERSONAL AUPORIZADO QSMESA",
-  "texto_lsch": "ACCESO RESTRINGIDO SOLO PERSONAL AUPORIZADO QSMESA"
+  "texto_ocr": "ACCESO RESTRINGIDO SOLO PERSONAL AUTORIZADO QMEGA",
+  "texto_lsch": "ACCESO RESTRINGIDO SOLO PERSONAL AUTORIZADO QMEGAR"
  },
  "3": {
   "texto_ocr": "VIA DE EVACUACION",
@@ -32,11 +32,11 @@
   "texto_lsch": "CASO INCENDIO ASCENSOR USAR NO USAR SOLO ESCALERA"
  },
  "5": {
-  "texto_ocr": "UTILICEPASAMANOS USE HANDRAIL",
-  "texto_lsch": "UTILICEPASAMANO HANDRAIL USAR"
+  "texto_ocr": "UTILICEPASAMANOS USE HANDRAIL. deseguridad",
+  "texto_lsch": "UTILICEPASAMANOS USE HANDRAIL / DESEGURIDAD"
  },
  "8": {
-  "texto_ocr": "UTILICE LOS PASAMANOS. MUTUIAL",
-  "texto_lsch": "PASAMANO UTILIZAR / MUTUIAL"
+  "texto_ocr": "UTILICE LOS PASAMANOS. MUTUAL",
+  "texto_lsch": "PASAMANO UTILIZAR / MUTUAL"
  }
 }

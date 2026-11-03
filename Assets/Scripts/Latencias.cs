@@ -1,9 +1,18 @@
 // Medicion de latencias de extremo a extremo de HandSign 3D (para el paper).
 //
-// Cada escaneo (gesto de captura) genera una fila en un CSV guardado en el
-// visor: Application.persistentDataPath/latencias.csv
-// En Meta Quest: Android/data/<paquete de la app>/files/latencias.csv
-// (visible desde el PC al conectar el visor por USB y permitir el acceso).
+// Cada escaneo (gesto de captura) genera una fila en un CSV guardado en la
+// carpeta publica de descargas del visor, un archivo por sesion:
+//   Download/HandSign3D/latencias_AAAAMMDD_HHMMSS.csv
+// Desde el PC: conectar el visor por USB, permitir el acceso a los datos y
+// abrir "Almacenamiento interno compartido > Download > HandSign3D".
+// (Antes se guardaba en Android/data/<paquete>/files/, carpeta que el entorno
+// de Meta no deja abrir desde el PC.) Con Android 11+ (la app apunta a la API
+// 34) una app puede crear archivos propios en Download sin pedir permisos.
+// Se usa un archivo nuevo por sesion porque, si la app se reinstala, deja de
+// ser duena de los archivos anteriores y no podria seguir escribiendolos.
+// Tras cada escritura se avisa al indexador de medios de Android para que el
+// archivo aparezca por USB sin reiniciar el visor. Si Download no se puede
+// usar, se guarda como antes en Application.persistentDataPath/latencias.csv.
 //
 // Las etapas se miden con Stopwatch (alta resolucion) en el hilo principal.
 // Limitaciones conocidas: no incluye la latencia del sensor de la camara
@@ -26,7 +35,10 @@ public static class Latencias
     /// <summary>Muestra un resumen de la medicion en el panel de texto del avatar.</summary>
     public static bool MostrarEnPantalla = true;
 
-    const string NombreArchivo = "latencias.csv";
+    const string NombreArchivo = "latencias.csv";       // respaldo (persistentDataPath)
+    const string CarpetaDescargas = "HandSign3D";        // subcarpeta dentro de Download
+    static string _rutaSesion;                           // archivo de esta sesion
+    static bool _usarRespaldo;                           // true si Download fallo
 
     // Etapas en el orden en que se escriben en el CSV (ms).
     public static readonly string[] Etapas =
@@ -67,9 +79,85 @@ public static class Latencias
 
     public static double AhoraMs { get { return Reloj.Elapsed.TotalMilliseconds; } }
 
+    /// <summary>Ruta del CSV de esta sesion (Download/HandSign3D/... o el respaldo).</summary>
     public static string RutaArchivo
     {
+        get
+        {
+            if (_usarRespaldo) return RutaRespaldo;
+            if (_rutaSesion == null)
+            {
+                string descargas = CarpetaDescargasPublica();
+                if (string.IsNullOrEmpty(descargas)) { _usarRespaldo = true; return RutaRespaldo; }
+                string sello = System.DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture);
+                _rutaSesion = Path.Combine(Path.Combine(descargas, CarpetaDescargas), "latencias_" + sello + ".csv");
+            }
+            return _rutaSesion;
+        }
+    }
+
+    static string RutaRespaldo
+    {
         get { return Path.Combine(Application.persistentDataPath, NombreArchivo); }
+    }
+
+    /// <summary>Carpeta publica Download del visor (null en el Editor).</summary>
+    static string CarpetaDescargasPublica()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        try
+        {
+            using (var env = new AndroidJavaClass("android.os.Environment"))
+            {
+                string tipo = env.GetStatic<string>("DIRECTORY_DOWNLOADS");
+                using (var dir = env.CallStatic<AndroidJavaObject>("getExternalStoragePublicDirectory", tipo))
+                    return dir.Call<string>("getAbsolutePath");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning("[Latencia] No se pudo obtener la carpeta Download: " + ex.Message);
+            return "/storage/emulated/0/Download";
+        }
+#else
+        return null;
+#endif
+    }
+
+    /// <summary>Avisa al indexador de medios de Android para que el archivo se vea
+    /// por USB (MTP) sin reiniciar el visor. Si falla, el archivo igual queda escrito.</summary>
+    static void AvisarIndexador(string ruta)
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        System.IntPtr clase = System.IntPtr.Zero, rutas = System.IntPtr.Zero;
+        try
+        {
+            using (var unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var actividad = unity.GetStatic<AndroidJavaObject>("currentActivity"))
+            {
+                clase = AndroidJNI.FindClass("android/media/MediaScannerConnection");
+                System.IntPtr metodo = AndroidJNI.GetStaticMethodID(clase, "scanFile",
+                    "(Landroid/content/Context;[Ljava/lang/String;[Ljava/lang/String;" +
+                    "Landroid/media/MediaScannerConnection$OnScanCompletedListener;)V");
+                rutas = AndroidJNIHelper.ConvertToJNIArray(new[] { ruta });
+                var args = new jvalue[4];
+                args[0].l = actividad.GetRawObject();
+                args[1].l = rutas;
+                args[2].l = System.IntPtr.Zero;   // tipo MIME: lo deduce de la extension
+                args[3].l = System.IntPtr.Zero;   // sin callback
+                AndroidJNI.CallStaticVoidMethod(clase, metodo, args);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning("[Latencia] No se pudo avisar al indexador: " + ex.Message);
+        }
+        finally
+        {
+            if (rutas != System.IntPtr.Zero) AndroidJNI.DeleteLocalRef(rutas);
+            if (clase != System.IntPtr.Zero) AndroidJNI.DeleteLocalRef(clase);
+        }
+#endif
     }
 
     /// <summary>Inicia una medicion en el instante del gesto de captura.</summary>
@@ -123,15 +211,7 @@ public static class Latencias
         if (Actual == m) Actual = null;
         try
         {
-            string ruta = RutaArchivo;
-            bool nuevo = !File.Exists(ruta);
             var sb = new StringBuilder();
-            if (nuevo)
-            {
-                sb.Append("id,fecha_hora,modo,primera_ejecucion");
-                foreach (string e in Etapas) sb.Append(',').Append(e).Append("_ms");
-                sb.Append(",reconocimiento_total_ms,hasta_inicio_animacion_ms,animacion_ms,total_ms,n_animaciones,cancelada,resultado\n");
-            }
             sb.Append(m.Id).Append(',')
               .Append(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)).Append(',')
               .Append(m.Modo).Append(',')
@@ -150,13 +230,52 @@ public static class Latencias
             sb.Append(',').Append(m.Cancelada ? 1 : 0);
             sb.Append(',').Append('"').Append((m.Resultado ?? "").Replace("\"", "'").Replace("\n", " ")).Append('"');
             sb.Append('\n');
-            File.AppendAllText(ruta, sb.ToString(), Encoding.UTF8);
+            string ruta = Escribir(sb.ToString());
             Debug.Log("[Latencia] " + Resumen(m) + " -> " + ruta);
         }
         catch (System.Exception ex)
         {
             Debug.LogWarning("[Latencia] No se pudo guardar la medicion: " + ex.Message);
         }
+    }
+
+    static string Cabecera()
+    {
+        var sb = new StringBuilder("id,fecha_hora,modo,primera_ejecucion");
+        foreach (string e in Etapas) sb.Append(',').Append(e).Append("_ms");
+        sb.Append(",reconocimiento_total_ms,hasta_inicio_animacion_ms,animacion_ms,total_ms,n_animaciones,cancelada,resultado\n");
+        return sb.ToString();
+    }
+
+    /// <summary>Agrega la fila al CSV de la sesion. Si Download falla, cambia al
+    /// respaldo (persistentDataPath) y reintenta una vez. Devuelve la ruta usada.</summary>
+    static string Escribir(string fila)
+    {
+        string ruta = RutaArchivo;
+        try
+        {
+            AgregarFila(ruta, fila);
+        }
+        catch (System.Exception ex)
+        {
+            if (_usarRespaldo) throw;
+            Debug.LogWarning("[Latencia] No se pudo escribir en " + ruta + " (" + ex.Message +
+                             "); se usa " + RutaRespaldo);
+            _usarRespaldo = true;
+            ruta = RutaRespaldo;
+            AgregarFila(ruta, fila);
+            return ruta;
+        }
+        if (!_usarRespaldo) AvisarIndexador(ruta);
+        return ruta;
+    }
+
+    static void AgregarFila(string ruta, string fila)
+    {
+        string carpeta = Path.GetDirectoryName(ruta);
+        if (!string.IsNullOrEmpty(carpeta)) Directory.CreateDirectory(carpeta);
+        string texto = File.Exists(ruta) ? fila : Cabecera() + fila;
+        File.AppendAllText(ruta, texto, Encoding.UTF8);
     }
 
     static string F(double v) { return v.ToString("0.00", CultureInfo.InvariantCulture); }
